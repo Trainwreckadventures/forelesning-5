@@ -56,6 +56,19 @@
         });
       }
 
+      //Edit
+
+      const nameInput = document.createElement("input");
+      nameInput.type = "text";
+      nameInput.placeholder = "skriv inn navnet på ansatt...";
+      nameInput.id = `nameInput${index}`;
+
+      const editBtn = document.createElement("button");
+      editBtn.innerHTML = "Rediger ansatt";
+      editBtn.addEventListener("click", function(){
+        editStaffMember(index);
+      })
+
       //Create
 
       function addStaffMember() {
@@ -67,6 +80,14 @@
       }
 
       addBtn.onclick = addStaffMember;
+
+      //Edit
+      function editStaffMember(index){
+      const nameInput = document.createElement(`nameInput-${index}`).value;
+      }
+      hogwartsStaff[index].name = newStaffName;
+
+      showAllStaff();
     </script>
   </body>
 </html>
