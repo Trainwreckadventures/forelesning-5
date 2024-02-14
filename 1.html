@@ -41,36 +41,47 @@
 
       fetchAndShowStaff();
 
-      //Read for å visefrem alle ansatte
+      //Read for å vise frem alle ansatte
 
       function showAllStaff() {
+        staffContainer.innerHTML = "";
+
         hogwartsStaff.forEach((staffMember, index) => {
           const staffCard = document.createElement("div");
 
-          //Slett
+          //Slette
           const deleteBtn = document.createElement("button");
+          deleteBtn.innerHTML = "slett ansatt";
+          deleteBtn.style.backgroundColor = "red";
+          deleteBtn.addEventListener("click", function () {
+            deleteStaffMember(index);
+          });
+
+          //Edit
+          const nameInput = document.createElement("input");
+          nameInput.type = "text";
+          nameInput.placeholder = "skriv inn navnet på ansatt...";
+          nameInput.id = `nameInput${index}`;
+
+          const editBtn = document.createElement("button");
+          editBtn.innerHTML = "Rediger ansatt";
+          editBtn.addEventListener("click", function () {
+            editStaffMember(index);
+          });
 
           staffCard.innerHTML = `<img src="${staffMember.image}" style="width: 100px" /> <h3>${staffMember.name}</h3>`;
           console.log(staffMember.name);
+          staffCard.append(deleteBtn, nameInput, editBtn);
           staffContainer.append(staffCard);
         });
       }
 
-      //Edit
-
-      const nameInput = document.createElement("input");
-      nameInput.type = "text";
-      nameInput.placeholder = "skriv inn navnet på ansatt...";
-      nameInput.id = `nameInput${index}`;
-
-      const editBtn = document.createElement("button");
-      editBtn.innerHTML = "Rediger ansatt";
-      editBtn.addEventListener("click", function(){
-        editStaffMember(index);
-      })
+      function deleteStaffMember(TELLER) {
+        hogwartsStaff.splice(TELLER, 1);
+        showAllStaff();
+      }
 
       //Create
-
       function addStaffMember() {
         hogwartsStaff.unshift({
           name: newStaffTxt.value,
@@ -82,12 +93,13 @@
       addBtn.onclick = addStaffMember;
 
       //Edit
-      function editStaffMember(index){
-      const nameInput = document.createElement(`nameInput-${index}`).value;
-      }
-      hogwartsStaff[index].name = newStaffName;
+      function editStaffMember(index) {
+        const newStaffName = document.getElementById(`nameInput-${index}`).value;
 
-      showAllStaff();
+        hogwartsStaff[index].name = newStaffName;
+
+        showAllStaff();
+      }
     </script>
   </body>
 </html>
