@@ -61,7 +61,7 @@
           const nameInput = document.createElement("input");
           nameInput.type = "text";
           nameInput.placeholder = "skriv inn navnet på ansatt...";
-          nameInput.id = `nameInput${index}`;
+          nameInput.id = `nameInput-${index}`;
 
           const editBtn = document.createElement("button");
           editBtn.innerHTML = "Rediger ansatt";
@@ -94,7 +94,9 @@
 
       //Edit
       function editStaffMember(index) {
-        const newStaffName = document.getElementById(`nameInput-${index}`).value;
+        const newStaffName = document.getElementById(
+          `nameInput-${index}`
+        ).value;
 
         hogwartsStaff[index].name = newStaffName;
 
