@@ -55,6 +55,18 @@
           staffContainer.append(staffCard);
         });
       }
+
+      //Create
+
+      function addStaffMember() {
+        hogwartsStaff.unshift({
+          name: newStaffTxt.value,
+        });
+        console.log(hogwartsStaff);
+        showAllStaff();
+      }
+
+      addBtn.onclick = addStaffMember;
     </script>
   </body>
 </html>
